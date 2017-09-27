@@ -1,5 +1,5 @@
-describe('CommonTC_F_19', function() {
-	it('CommonTC_F_19 huy thao tac xoa',function(){
+describe('CommonTC_F_18', function() {
+	it('CommonTC_F_18 hien thong bao xac nhan xoa',function(){
 
 		cy
 
@@ -8,6 +8,7 @@ describe('CommonTC_F_19', function() {
 			.get("input[name='email']").clear().type("admin@gmail.com")
 
 			.get("input[name='password']").type("Methadone@2017").type("{enter}")
+			.wait(4000)
 
 			.visit(Cypress.env('issuing_agency'))
 
@@ -15,8 +16,6 @@ describe('CommonTC_F_19', function() {
 
 					cy.root().get("i[class='fa fa-trash-o']").click()
 			})
-
-			.get("button[data-bb-handler='cancel']").click()
 
 	}) 
 })

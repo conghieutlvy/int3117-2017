@@ -9,6 +9,8 @@ describe('CommonTC_F_20', function() {
 
 			.get("input[name='password']").type("Methadone@2017").type("{enter}")
 
+			.wait(4000)
+
 			.visit(Cypress.env('administrators'))
 
 			.get("td[class='ng-binding']").contains("1").parent().within(function(){

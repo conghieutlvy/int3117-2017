@@ -4,13 +4,15 @@ describe('THEMMOI_BN', function() {
 
 		cy
 
-			.visit("http://52.187.8.102/signin")
+			.visit(Cypress.env('sign'))
 
 			.get("input[name='email']").type("admin_agency_10@gmail.com")
 
 			.get("input[name='password']").type("Methadone@2017").type("{enter}")
 
-			.visit("http://52.187.8.102/main/patients/new")
+			.wait(4000)
+
+			.visit(Cypress.env('newPatient'))
 
 	})
 

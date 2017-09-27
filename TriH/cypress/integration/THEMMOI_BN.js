@@ -10,6 +10,8 @@ describe('THEMMOI_BN', function() {
 
 				.get("input[name='password']").type("Methadone@2017").type("{enter}")			
 
+				.wait(4000)
+
 				.visit(Cypress.env('newPatient'))
 
 		})

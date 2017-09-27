@@ -4,32 +4,32 @@ describe('THEMMOI_BN', function() {
 
 		cy
 
-			.visit("http://52.187.8.102/signin")
+			.visit(Cypress.env('sign'))
 
 			.get("input[name='email']").type("admin_agency_10@gmail.com")
 
 			.get("input[name='password']").type("Methadone@2017").type("{enter}")
 
-			.visit("http://52.187.8.102/main/patients/new")
+			.wait(4000)
+
+			.visit(Cypress.env('newPatient'))
 
 	})
 
-	context("THEMMOI_BN_137", function(){
-		//Kiểm tra thông báo khi ngày cấp nhỏ hơn ngày sinh
-		it("Ngày cấp < Ngày sinh", function(){
+	context('THEMMOI_BN_134',function(){
+		// Kiểm tra thông báo khi nhập ngày sai định dạng
+		it("Nhập ngày sai định dạng", function(){
 
 			cy
-				//Nhập ngày cấp
+				//Nhập ngày sai định dạng
 				.get("div[class='form-group']").contains("Ngày cấp").parent().within(function(){
 
-					cy.root().get(".ng-empty").focus().type("01/01/2012")
+					cy.root().get(".ng-empty").focus().type("12/12/122{enter}")// ko co lenh {tab}, dung tam {enter}
+
+						
 
 				})
-				//Nhập ngày sinh
-				.get("input[name='birth_date']").focus().type("01/01/2013")
-				//Lưu
 				.get("button").contains("Lưu").click()
-
 				.wait(3000)
 				// Kiểm tra thông báo lỗi có hiển thị không
 				.get("label").contains("Ngày cấp").parent().within(function(){
@@ -40,13 +40,12 @@ describe('THEMMOI_BN', function() {
 				// Kiểm tra thông báo lỗi đã đúng chưa
 				.get("label").contains("Ngày cấp").parent().within(function(){
 
-						cy.get(".text-error").should("contain","Vui lòng nhập ngày lớn hơn ngày sinh")
-
+					cy.get(".text-error").should("contain","Ngày tháng không đúng định dạng")
 				})
+				
 
 		})
 
 	})
-
 
 })
