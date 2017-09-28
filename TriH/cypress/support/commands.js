@@ -25,20 +25,18 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("doLoginAs", function(user) {
-  cy.get("input[name='email']").type(user.email)
-    .get("input[name='password']").type(user.password + '{enter}')
-
-  cy.url().should('not.include', '/signin')
+	cy
+		.get("input[name='email']").type(user.email)
+    	.get("input[name='password']").type(user.password + '{enter}')
+    cy.wait(3000)
+})
+Cypress.Commands.add("doSelect", function() {
+  cy.get("div").first().click()
+    .find('li[role="option"]').first().click()
 })
 
-Cypress.Commands.add("doSelect_combobox", function(element, value) {
-	element.click()
-    .find('li[role="option"]').contains(value).first().click()
-})
-Cypress.commands.add("typeTextboxWithString", function(lb, str){
-	cy.get("label").contains(lb).parent().within(function(){
-		cy.root().get("input[type='textbox']").type(str)
-	})
+Cypress.Commands.add("getElUseLabel", function(lb){
+	return cy.get("label.required").contains(lb).parent()
 })
 
 

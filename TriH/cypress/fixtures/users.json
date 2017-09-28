@@ -1,27 +1,22 @@
-[
-  {
-    "types": "admin",
+{
+  "admin": {
     "email": "admin_10@gmail.com",
     "password": "Methadone@2017"
   },
-  {
-    "types": "agency",
+  "agency": {
     "email": "admin_agency_10@gmail.com",
     "password": "Methadone@2017"
   },
-  {
-    "types": "doctor",
+  "doctor": {
     "email": "doctor_10@gmail.com",
     "password": "Methadone@2017"
   },
-  {
-    "types": "nurse",
+  "nurse": {
     "email": "nurse_10@gmail.com",
     "password": "Methadone@2017"
   },
-  {
-    "types": "storekeeper",
+  "storekeeper": {
     "email": "storekeeper_10@gmail.com",
     "password": "Methadone@2017"
   }
-]
+}

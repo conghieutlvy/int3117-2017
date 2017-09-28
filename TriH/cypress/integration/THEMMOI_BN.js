@@ -6,11 +6,11 @@ describe('THEMMOI_BN', function() {
 			cy			
 				.visit(Cypress.env('sign'))
 
-				.get("input[name='email']").type("admin_agency_10@gmail.com")
+				.fixture("users").then(user=>{
 
-				.get("input[name='password']").type("Methadone@2017").type("{enter}")			
-
-				.wait(4000)
+					cy.doLoginAs(user.agency)
+				
+				})		
 
 				.visit(Cypress.env('newPatient'))
 
@@ -24,13 +24,13 @@ describe('THEMMOI_BN', function() {
 
 				.type("25/12/2012").type("{enter}")
 				// Mở Calendar
-				.get("label.required").contains("Ngày cấp").parent().within(function(){
+				.getElUseLabel("Ngày cấp").within(function(){
 
-					cy.root().get("i[class='fa fa-calendar']").click()
+					cy.root().get("span.btn").click()
 
 				})
 				// Kiểm tra tháng năm
-				.get("th[class='datepicker-switch']").should("contain","December 2012") 
+				.get("th.datepicker-switch").should("contain","December 2012") 
 				// Kiểm tra ngày
 				.get("td.active.day").should("contain","25") 
 
@@ -41,9 +41,9 @@ describe('THEMMOI_BN', function() {
 
 			cy
 				// Mở Calendar
-				.get("label.required").contains("Ngày cấp").parent().as("ngayCap").within(function(){
+				.getElUseLabel("Ngày cấp").as("ngayCap").within(function(){
 
-					cy.root().get("i[class='fa fa-calendar']").click()
+					cy.root().get("span.btn").click()
 
 				})
 				// Chọn ngày
@@ -82,15 +82,13 @@ describe('THEMMOI_BN', function() {
 
 			cy
 				// Nhập ngày sai định dạng
-				.get("label.required").contains("Ngày cấp").parent().as("ngayCap").within(function(){
+				.getElUseLabel("Ngày cấp").as("ngayCap").within(function(){
 
-					cy.root().get(".ng-empty").focus().type("12/12/122{enter}")// ko co lenh {tab}, dung tam {enter}
-
-						
+					cy.root().get(".ng-empty").focus().type("12/12/122")
 
 				})
 				.get("button").contains("Lưu").click()
-				.wait(3000)
+				.wait(1000)
 				// Kiểm tra thông báo lỗi có hiển thị không
 				.get("@ngayCap").within(function(){
 
@@ -112,79 +110,65 @@ describe('THEMMOI_BN', function() {
 			cy
 				// Nhập các trường bắt buộc
 				
-					.get("label.required").as('label').contains("Họ và tên").parent().within(function(){
+					.getElUseLabel("Họ và tên").within(function(){
 
-						cy.get("input").focus().type("Nguyen Van A")
+						cy.get("input").type("Nguyen Van A")
 
 					})
 
 					.get("input[name='birth_date']").focus().type("01/01/1999{enter}")
 
-					.get("@label").contains("Giới tính").parent().within(function(){
+					.getElUseLabel("Giới tính").within(function(){
 
-						cy.get("a").click()					
+						cy.doSelect()					
 
 					})	
-
-					.get("#ui-select-choices-13").find("li").first().click()
 
 					.get("input[name='admission_date']").focus().type("01/11/1999{enter}")
 
-					.get("@label").contains("Tỉnh/Thành phố thường trú").parent().within(function(){
+					.getElUseLabel("Tỉnh/Thành phố thường trú").within(function(){
 
-						cy.get("a").click()					
-
-					})	
-
-					.get("#ui-select-choices-19").find("li").first().click()
-
-					.get("@label").contains("Huyện/Quận thường trú").parent().within(function(){
-
-						cy.get("a").click()					
+						cy.doSelect()					
 
 					})	
 
-					.get("#ui-select-choices-20").find("li").first().click()
+					.getElUseLabel("Huyện/Quận thường trú").within(function(){
 
-					.get("@label").contains("Xã/Thị Trấn thường trú").parent().within(function(){
-
-						cy.get("a").click()					
+						cy.doSelect()					
 
 					})	
 
-					.get("#ui-select-choices-21").find("li").first().click()
+					.getElUseLabel("Xã/Thị Trấn thường trú").within(function(){
 
-					.get("@label").contains("Tỉnh/Thành phố tạm trú").parent().within(function(){
+						cy.doSelect()					
 
-						cy.get("a").first().click()					
+					})	
+
+					.getElUseLabel("Tỉnh/Thành phố tạm trú").within(function(){
+
+						cy.doSelect()					
 
 					})
 
-					.get("@label").contains("Huyện/Quận tạm trú").parent().within(function(){
+					.getElUseLabel("Huyện/Quận tạm trú").within(function(){
 
-						cy.get("a").click()					
+						cy.doSelect()					
 
-					})	
+					})
 
-					.get("#ui-select-choices-23").find("li").first().click()
+					.getElUseLabel("Xã/Thị Trấn tạm trú").within(function(){
 
-					.get("@label").contains("Xã/Thị Trấn tạm trú").parent().within(function(){
-
-						cy.get("a").click()					
+						cy.doSelect()					
 
 					})	
 
-					.get("#ui-select-choices-24").find("li").first().click()
+					.getElUseLabel("Loại giấy tờ").within(function(){
 
-					.get("@label").contains("Loại giấy tờ").parent().within(function(){
-
-						cy.get("a").click()					
+						cy.doSelect()					
 
 					})	
 
-					.get("#ui-select-choices-25").find("li").first().click()	
-
-					.get("@label").contains("Số").parent().within(function(){
+					.getElUseLabel("Số").within(function(){
 
 						cy.get("input").focus().type("111111111")
 
@@ -194,7 +178,7 @@ describe('THEMMOI_BN', function() {
 
 					.get(".general-item-list").within(function(){
 
-						cy.get("@label").contains("Họ và tên").parent().within(function(){
+						cy.getElUseLabel("Họ và tên").within(function(){
 
 							cy.get("input").focus().type("Nguyen Van B")
 
@@ -202,19 +186,18 @@ describe('THEMMOI_BN', function() {
 
 					})
 
-					.get("@label").contains("Mối quan hệ").parent().within(function(){
+					.getElUseLabel("Mối quan hệ").within(function(){
 
-							cy.get("a").click()
+							cy.doSelect()
 
 						})
 
-					.get("#ui-select-choices-26").find("li").first().click()
 				
 				// Lưu
 				.get("button").contains("Lưu").click()
 				.wait(3000)
 				// Kiểm tra thông báo lỗi có hiển thị không
-				.get("@label").contains("Ngày cấp").parent().as("ngayCap").within(function(){
+				.getElUseLabel("Ngày cấp").as("ngayCap").within(function(){
 
 					cy.get(".text-error").should("not.have.css","display","none")
 
@@ -226,14 +209,13 @@ describe('THEMMOI_BN', function() {
 
 				})
 
-		})
-		
+		})	
 		// Kiểm tra thông báo khi ngày cấp > ngày hiện tại
 		it("THEMMOI_BN_136_Ngày cấp > Ngày hiện tại",function(){
 
 			cy
 				// Nhập ngày cấp > hiện tại 1 ngày
-				.get("label.required").contains("Ngày cấp").parent().as("ngayCap").within(function(){
+				.getElUseLabel("Ngày cấp").as("ngayCap").within(function(){
 
 					var now = new Date();
 
@@ -277,7 +259,7 @@ describe('THEMMOI_BN', function() {
 
 			cy
 				// Nhập ngày cấp
-				.get("label.required").contains("Ngày cấp").parent().as("ngayCap").within(function(){
+				.getElUseLabel("Ngày cấp").as("ngayCap").within(function(){
 
 					cy.root().get(".ng-empty").focus().type("01/01/2012")
 
@@ -288,6 +270,7 @@ describe('THEMMOI_BN', function() {
 				.get("button").contains("Lưu").click()
 
 				.wait(3000)
+
 				// Kiểm tra thông báo lỗi có hiển thị không
 				.get("@ngayCap").within(function(){
 
