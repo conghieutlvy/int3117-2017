@@ -1,0 +1,13 @@
+{
+	"projectId": "box56v",
+	"baseUrl": "http://13.76.80.144",
+	"env": {
+		"sign":"/signin",
+		"newPatient":"/main/patients/new",
+		"issuing_agency":"/main/admin/administrators/issuing_agency",
+		"administrators":"/main/admin/administrators"
+	},
+	"videoCompression":false,
+	"integrationFolder":"TriH/cypress/integration",
+	"fixturesFolder":"TriH/cypress/fixtures",
+	"supportFile":"TriH/cypress/support"}
