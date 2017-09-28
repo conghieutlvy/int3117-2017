@@ -10,4 +10,5 @@
 	"videoCompression":false,
 	"integrationFolder":"TriH/cypress/integration",
 	"fixturesFolder":"TriH/cypress/fixtures",
-	"supportFile":"TriH/cypress/support"}
+	"supportFile":"TriH/cypress/support/index.js"
+}
