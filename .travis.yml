@@ -3,4 +3,4 @@ script:
     - npm install -g cypress-cli
     - cypress install --cypress-version 0.19.2
     # run Cypress in headless CI mode
-    - cypress run --record --key 6c02858e-4499-4946-8a9b-ac92722c7454 -s TriH/cypress/integration/THEMMOI_BN.js --config supportFile=TriH/cypress/support/index.js
+    - cypress run --record --key 6c02858e-4499-4946-8a9b-ac92722c7454 -s TriH/cypress/integration/THEMMOI_BN.js --config supportFolder=TriH/cypress/support
