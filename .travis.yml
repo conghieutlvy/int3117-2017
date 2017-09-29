@@ -2,9 +2,7 @@ language: node_js
 node_js:
   - "7"
 script:
-    - npm install -g cypress-cli
-    - cypress install --cypress-version 0.19.2
-    # run Cypress in headless CI mode
+    - npm install cypress
     - cypress run --record --key 6c02858e-4499-4946-8a9b-ac92722c7454 -s TriH/cypress/integration/THEMMOI_BN.js
 notifications:
     - email: false
