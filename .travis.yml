@@ -1,6 +1,7 @@
 language: node_js
 script:
-    - nvm install update
+    - npm install npm@latest -g
+    - npm install -g n latest
     - npm install -g cypress-cli
     - cypress install --cypress-version 0.19.2
     # run Cypress in headless CI mode
