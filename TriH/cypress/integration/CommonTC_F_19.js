@@ -19,6 +19,11 @@ describe('CommonTC_F_19', function() {
 			})
 
 			.get("button[data-bb-handler='cancel']").click()
+			it("Kiem tra",function(){
+				cy
+					.get("td[class='ng-binding']").contains("10118")
+					.should('be.visible') 
+			})
 
 	}) 
 })

@@ -20,5 +20,11 @@ describe('CommonTC_F_20', function() {
 
 			.get("button[data-bb-handler='confirm']").click()
 
+			it("Kiem tra",function(){
+				cy
+					.get("div [class='toast-mesage']")
+					.should('have.text','Xóa tài khoản thành công') 
+			})
+
 	}) 
 })

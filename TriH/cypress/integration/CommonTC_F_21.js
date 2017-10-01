@@ -18,6 +18,11 @@ describe('CommonTC_F_21', function() {
 			})
 
 			.get("button[data-bb-handler='confirm']").click()
+			it("Kiem tra",function(){
+				cy
+					.get("div [class='toast-mesage']")
+					.should('have.text','Không thể xóa do đơn vị này có người dùng hoặc bệnh nhân') 
+			})
 
 	}) 
 })

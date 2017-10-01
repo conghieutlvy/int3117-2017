@@ -17,5 +17,11 @@ describe('CommonTC_F_18', function() {
 					cy.root().get("i[class='fa fa-trash-o']").click()
 			})
 
+			it("Kiem tra",function(){
+				cy
+					.get("div [class='modal-dialog']")
+					.should('be.visible') 
+			})
+
 	}) 
 })
